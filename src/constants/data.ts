@@ -1,11 +1,4 @@
-"use client";
-
-import type {
-  ChatMessage,
-  DashboardContextType,
-  ToolCardData,
-  WorkflowCardData,
-} from "@/types";
+import type { ChatMessage, ToolCardData, WorkflowCardData } from "@/types";
 import {
   AreaChart,
   ClipboardList,
@@ -13,28 +6,28 @@ import {
   MessageSquare,
   Search,
   ShieldAlert,
+  Slack,
 } from "lucide-react";
-import * as React from "react";
 
-const mockWorkflows: WorkflowCardData[] = [
+export const mockWorkflows: WorkflowCardData[] = [
   {
     icon: AreaChart,
     title: "Flux Summary",
-    description: "5 major variances detected vs Gl",
+    description: "5 major variances detected vs Gl obre or bei",
     stats: "",
     iconBgColor: "bg-orange-400",
   },
   {
     icon: Search,
     title: "Variance Explorer",
-    description: "Top 3 flagged accounts with % or",
+    description: "Top 3 flagged accounts with % or ewg",
     stats: "",
     iconBgColor: "bg-blue-500",
   },
   {
     icon: ShieldAlert,
     title: "Anomaly Analysis",
-    description: "2 unusual transaction patterns",
+    description: "2 unusual transaction patterns re rgerghe",
     stats: "",
     iconBgColor: "bg-red-500",
   },
@@ -54,22 +47,22 @@ const mockWorkflows: WorkflowCardData[] = [
   },
 ];
 
-const mockTools: ToolCardData[] = [
+export const mockTools: ToolCardData[] = [
   {
     icon: Mail,
     title: "Email Draft",
     description: "Last 2 unresolved comments",
-    iconColor: "text-red-500",
+    iconColor: "text-blue-500",
   },
   {
-    icon: MessageSquare,
+    icon: Slack,
     title: "Slack Draft",
     description: "Last 2 unresolved comments",
-    iconColor: "text-green-500",
+    iconColor: "text-pink-500",
   },
 ];
 
-const mockChatMessages: ChatMessage[] = [
+export const mockChatMessages: ChatMessage[] = [
   {
     id: 1,
     sender: "user",
@@ -86,29 +79,3 @@ const mockChatMessages: ChatMessage[] = [
     text: "What are the main drivers of revenue growth this month?",
   },
 ];
-
-const DashboardContext = React.createContext<DashboardContextType | undefined>(
-  undefined
-);
-
-export function DashboardProvider({ children }: { children: React.ReactNode }) {
-  const [workflows] = React.useState<WorkflowCardData[]>(mockWorkflows);
-  const [tools] = React.useState<ToolCardData[]>(mockTools);
-  const [chatMessages] = React.useState<ChatMessage[]>(mockChatMessages);
-
-  const value = { workflows, tools, chatMessages };
-
-  return (
-    <DashboardContext.Provider value={value}>
-      {children}
-    </DashboardContext.Provider>
-  );
-}
-
-export function useDashboard() {
-  const context = React.useContext(DashboardContext);
-  if (context === undefined) {
-    throw new Error("useDashboard must be used within a DashboardProvider");
-  }
-  return context;
-}

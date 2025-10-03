@@ -30,4 +30,5 @@ export interface DashboardContextType {
   workflows: WorkflowCardData[];
   tools: ToolCardData[];
   chatMessages: ChatMessage[];
+  addChatMessage: (text: string) => void;
 }

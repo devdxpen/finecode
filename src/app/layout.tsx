@@ -1,14 +1,14 @@
+import Header from "@/components/layout/Header";
+import Sidebar from "@/components/layout/Sidebar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-import { DashboardProvider } from "@/app/context/DashboardContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Fincore UI",
-  description: "Financial Dashboard UI",
+  description: "Fincore Dashboard UI",
 };
 
 export default function RootLayout({
@@ -17,14 +17,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          inter.variable
-        )}
-      >
-        <DashboardProvider>{children}</DashboardProvider>
+    <html lang="en">
+      <body className={inter.className}>
+        <div className="flex">
+          <Sidebar />
+          <main className="flex-1 flex flex-col h-screen">
+            <Header />
+            <div className="p-6 overflow-y-auto">
+              {children}
+            </div>
+          </main>
+        </div>
       </body>
     </html>
   );

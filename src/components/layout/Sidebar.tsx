@@ -5,7 +5,6 @@ import { SendHorizonal } from "lucide-react";
 import TextareaAutosize from "react-textarea-autosize";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useDashboard } from "@/app/context/DashboardContext";
 import ChatMessage from "../sidebar/ChatMessage";
 
 export default function Sidebar() {
